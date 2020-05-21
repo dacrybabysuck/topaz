@@ -17,7 +17,6 @@ function onEffectGain(target,effect)
     target:addLatent(tpz.latent.SIGNET_BONUS, 0, tpz.mod.DEF, 15)
     target:addLatent(tpz.latent.SIGNET_BONUS, 0, tpz.mod.EVA, 15)
 
-    local player_rank = target:getRank()
     local power = getPower(target)
 
     target:addMod(tpz.mod.REGEN, power(0))
@@ -31,7 +30,6 @@ function onEffectLose(target,effect)
     target:delLatent(tpz.latent.SIGNET_BONUS, 0, tpz.mod.DEF, 15)
     target:delLatent(tpz.latent.SIGNET_BONUS, 0, tpz.mod.EVA, 15)
 
-    local player_rank = target:getRank()
     local power = getPower(target)
 
     target:delMod(tpz.mod.REGEN, power(0))
