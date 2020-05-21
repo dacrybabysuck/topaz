@@ -19,8 +19,8 @@ function onEffectGain(target,effect)
 
     local power = getPower(target)
 
-    target:addMod(tpz.mod.REGEN, power(0))
-    target:addMod(tpz.mod.REFRESH, power(1))
+    target:addMod(tpz.mod.REGEN, power[0])
+    target:addMod(tpz.mod.REFRESH, power[1])
 end
 
 function onEffectTick(target,effect)
@@ -32,8 +32,8 @@ function onEffectLose(target,effect)
 
     local power = getPower(target)
 
-    target:delMod(tpz.mod.REGEN, power(0))
-    target:delMod(tpz.mod.REFRESH, power(1))
+    target:delMod(tpz.mod.REGEN, power[0])
+    target:delMod(tpz.mod.REFRESH, power[1])
 
 end
 
