@@ -1,6 +1,6 @@
 -----------------------------------
 --
---     tpz.effect.SIGNET
+--   tpz.effect.SIGNET
 --
 --   Signet is a a beneficial Status Effect that allows the acquisition of Conquest Points and Crystals
 --   from defeated enemies that grant Experience Points.
@@ -18,9 +18,13 @@ function onEffectGain(target,effect)
     target:addLatent(tpz.latent.SIGNET_BONUS, 0, tpz.mod.EVA, 15)
 
     local power = getPower(target)
+    target:setCharVar("SIGNET_REGEN_BONUS", power[1]);
+    target:setCharVar("SIGNET_REFRESH_BONUS", power[2]);
 
-    target:addMod(tpz.mod.REGEN, power[0])
-    target:addMod(tpz.mod.REFRESH, power[1])
+    target:addMod(tpz.mod.REGEN, power[1])
+    target:addMod(tpz.mod.REFRESH, power[2])
+
+    target:PrintToPlayer(target:getMod(tpz.mod.REGEN))
 end
 
 function onEffectTick(target,effect)
@@ -30,10 +34,11 @@ function onEffectLose(target,effect)
     target:delLatent(tpz.latent.SIGNET_BONUS, 0, tpz.mod.DEF, 15)
     target:delLatent(tpz.latent.SIGNET_BONUS, 0, tpz.mod.EVA, 15)
 
-    local power = getPower(target)
+    local regen_power = target:getCharVar("SIGNET_REGEN_BONUS");
+    local refresh_power = target:getCharVar("SIGNET_REFRESH_BONUS");
 
-    target:delMod(tpz.mod.REGEN, power[0])
-    target:delMod(tpz.mod.REFRESH, power[1])
+    target:delMod(tpz.mod.REGEN, regen_power)
+    target:delMod(tpz.mod.REFRESH, refresh_power)
 
 end
 
@@ -42,8 +47,7 @@ function getPower(target)
     local player_rank = target:getRank()
     local regen_power = 0
     local refresh_power = 0
-    local result = {}
-
+    
     if player_rank == 10 then
         regen_power = 5
         refresh_power = 5
@@ -56,13 +60,11 @@ function getPower(target)
     elseif player_rank >= 3 then
         regen_power = 2
         refresh_power = 2
-    elseif player_rank == 2 then
+    else--if player_rank == 2 then
         regen_power = 1
         refresh_power = 1
     end
-
-    result = {regen_power, refresh_power}
-
-    return result
+    
+    return {regen_power, refresh_power}
 
 end
