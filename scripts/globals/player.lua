@@ -121,6 +121,7 @@ local function CharCreate(player)
     end
 
     player:addItem(536) -- adventurer coupon
+    player:addItem(28540) -- warp ring
     player:addTitle(tpz.title.NEW_ADVENTURER)
     player:setCharVar("MoghouseExplication", 1) -- needs Moghouse intro
     player:setCharVar("spokeKindlix", 1) -- Kindlix introduction
