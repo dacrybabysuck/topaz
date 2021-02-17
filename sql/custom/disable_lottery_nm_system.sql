@@ -2,7 +2,7 @@
 UPDATE mob_groups SET spawntype=0,respawntime=331 WHERE spawntype=32;
 
 --Makes seven sin skulls auto spawn vs triggered.
-UPDATE mob_groups SET spawntype=0,respawntime=332 WHERE zoneid=195 AND name like 'skull_of_%';
+UPDATE mob_groups SET spawntype=0,respawntime=332 WHERE zoneid=195 AND name like 'Skull_of_%';
 
 --Remove duplicate spawn points to make sure only 1 instance of each NM will spawn.
 DELETE FROM mob_spawn_points WHERE mobid = 16822423 AND mobname = "Bugbear_Strongman";
