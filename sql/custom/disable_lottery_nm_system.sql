@@ -1,6 +1,9 @@
 --Removes lottery spawn mechanic, sets all to normal spawntype and 5mins 31secs respawn.
 UPDATE mob_groups SET spawntype=0,respawntime=331 WHERE spawntype=32;
 
+--Makes seven sin skulls auto spawn vs triggered.
+UPDATE mob_groups SET spawntype=0,respawntime=332 WHERE zoneid=195 AND name like 'skull_of_%';
+
 --Remove duplicate spawn points to make sure only 1 instance of each NM will spawn.
 DELETE FROM mob_spawn_points WHERE mobid = 16822423 AND mobname = "Bugbear_Strongman";
 DELETE FROM mob_spawn_points WHERE mobid = 16826510 AND mobname = "Swashstox_Beadblinker";
